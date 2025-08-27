@@ -155,7 +155,7 @@ const Header = () => {
           />
 
           <nav>
-            <div className={styles.link_wrap}>
+            <div className={styles.link_wrap} ref={ref}>
               <div>
                 <a
                   onClick={() => setDrop(!drop)}
@@ -194,7 +194,7 @@ const Header = () => {
         </button>
       </div>
       {drop && (
-        <div ref={ref} className={styles.modal_window}>
+        <div  className={styles.modal_window}>
           <nav>
             {["Minsk", "Gomel", "Brest", "Vitebsk", "Grodno", "Mogilev"].map(
               (city) => (

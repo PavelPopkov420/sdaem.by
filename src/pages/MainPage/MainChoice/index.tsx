@@ -92,9 +92,11 @@ const MainChoice: React.FC<MainProps> = ({ selectIsOpen, setSelectIsOpen }) => {
           setSelectIsOpen((prev) => ({ ...prev, selectCity: false }));
       }
       if (!roomsRef.current) return;
+      console.log(roomsRef.current.contains(e.target as Node));
       if (!roomsRef.current.contains(e.target as Node)) {
         selectIsOpen.selectRooms &&
           setSelectIsOpen((prev) => ({ ...prev, selectRooms: false }));
+          
       }
     };
 
@@ -119,10 +121,11 @@ const MainChoice: React.FC<MainProps> = ({ selectIsOpen, setSelectIsOpen }) => {
       ...prev,
       selectRooms: !selectIsOpen.selectRooms,
     }));
+    console.log(2)
     setData((prev) => ({ ...prev, rooms: e }));
     setNameSelect((prev) => ({ ...prev, rooms: e }));
   };
-
+  
   return (
     <section className={styles.container_2}>
       <div className={styles.wrapper}>
@@ -147,7 +150,7 @@ const MainChoice: React.FC<MainProps> = ({ selectIsOpen, setSelectIsOpen }) => {
         <form className={styles.select}>
           <div className={clsx(styles.select_item, styles.city)}>
             <p className={styles["select_item-title"]}>Город</p>
-            <div>
+            <div ref={cityRef}>
               <div
                 className={
                   selectIsOpen.selectCity
@@ -167,7 +170,7 @@ const MainChoice: React.FC<MainProps> = ({ selectIsOpen, setSelectIsOpen }) => {
                 </div>
               </div>
               <div
-                ref={cityRef}
+              
                 style={{ position: "relative", left: "0" }}
                 className={
                   selectIsOpen.selectCity
@@ -191,7 +194,8 @@ const MainChoice: React.FC<MainProps> = ({ selectIsOpen, setSelectIsOpen }) => {
           </div>
           <div className={clsx(styles.select_item, styles.rooms)}>
             <p className={styles["select_item-title"]}>Комнаты</p>
-            <div>
+            
+            <div ref={roomsRef}>
               <div
                 className={
                   selectIsOpen.selectRooms
@@ -199,10 +203,10 @@ const MainChoice: React.FC<MainProps> = ({ selectIsOpen, setSelectIsOpen }) => {
                     : `${styles.city}`
                 }
                 onClick={() =>
-                  setSelectIsOpen((prev) => ({
+                  {console.log(selectIsOpen.selectRooms); setSelectIsOpen((prev) => ({
                     ...prev,
                     selectRooms: !selectIsOpen.selectRooms,
-                  }))
+                  }))}
                 }
               >
                 <div className={styles.city_wrapper}>
@@ -211,8 +215,8 @@ const MainChoice: React.FC<MainProps> = ({ selectIsOpen, setSelectIsOpen }) => {
                 </div>
               </div>
               <div
-                ref={roomsRef}
-                style={{ position: "relative", left: "0" }}
+                
+                style={{ position: "relative", left: "0"}}
                 className={
                   selectIsOpen.selectRooms
                     ? `${styles["drop-down-active"]}`

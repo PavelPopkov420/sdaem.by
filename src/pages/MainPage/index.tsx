@@ -51,7 +51,7 @@ const Main = () => {
     >
       <MainChoice
         selectIsOpen={selectIsOpen}
-        setSelectIsOpen={setSelectIsOpen}
+        setSelectIsOpen={(...arg) => {console.log(arg);setSelectIsOpen(...arg)}}
       />
       <MainRent selectIsOpen={selectIsOpen} setSelectIsOpen={setSelectIsOpen} />
       <MainSearch />

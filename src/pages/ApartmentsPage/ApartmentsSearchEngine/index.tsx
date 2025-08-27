@@ -70,7 +70,7 @@ const ApartmentsSearchEngine: React.FC<ApartmentsProps> = ({
       if (!ref.current.contains(e.target as Node)) {
         setFilterData((prev) => ({
           ...prev,
-          selectActive: false,
+          selectActive: false
         }));
       }
     };
@@ -80,25 +80,26 @@ const ApartmentsSearchEngine: React.FC<ApartmentsProps> = ({
     return () => {
       document.removeEventListener("mousedown", handler);
     };
-  }, [filterData.selectActive]);
+  }, [filterData.selectActive, setFilterData]);
 
   return (
     <div className={styles.search}>
       <div>
         <div className={clsx(styles.select_item, styles.rooms)}>
           <p className={styles["select_item-title"]}>Комнаты</p>
-          <div style={{ position: "relative" }}>
+          <div style={{ position: "relative", border: "1px solid red" }}>
+            1
             <div
               className={
                 filterData.selectActive
                   ? `${styles.select_active}`
                   : `${styles.city}`
               }
-              onClick={() =>
-                setFilterData((prev) => ({
+              onClick={() => 
+                {setFilterData((prev) => ({
                   ...prev,
                   selectActive: !filterData.selectActive,
-                }))
+                })); console.log(filterData.selectActive)}
               }
             >
               <div className={styles.city_wrapper}>
